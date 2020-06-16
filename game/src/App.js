@@ -14,7 +14,26 @@ const App = () => {
     return rows;
   });
   // console.log(grid);
-  return <div>Earth to Bob</div>;
+  return (
+    <div>
+      {/* Display the rows by using .map and getting the rows themselves and grabbing the index*/}
+      {grid.map((rows, i) =>
+        // And then calling the .map function on the rows object and getting the columns created and the index for each
+        rows.map((col, j) => (
+          // The div holds the unique index and styling based on whether or not the cell is dead or alive
+          <div
+            key={"${i}-${j}"}
+            style={{
+              width: 15,
+              height: 15,
+              backgroundColor: grid[i][j] ? "black" : undefined,
+              border: "solid 1px black",
+            }}
+          />
+        ))
+      )}
+    </div>
+  );
 };
 
 export default App;
