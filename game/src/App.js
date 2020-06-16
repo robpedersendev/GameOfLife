@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const numRows = 25;
-const numCols = 25;
+const numRows = 60;
+const numCols = 60;
 
 const App = () => {
   const [grid, setGrid] = useState(() => {
@@ -19,7 +19,7 @@ const App = () => {
       // Created a CSS grid to display or rows and columns
       style={{
         display: "grid",
-        gridTemplateColumns: `repeat(${numCols}, 15px)`,
+        gridTemplateColumns: `repeat(${numCols}, 12px)`,
       }}
     >
       {/* Display the rows by using .map and getting the rows themselves and grabbing the index*/}
@@ -30,8 +30,8 @@ const App = () => {
           <div
             key={"${i}-${j}"}
             style={{
-              width: 15,
-              height: 15,
+              width: 10,
+              height: 10,
               backgroundColor: grid[i][j] ? "black" : undefined,
               border: "solid 1px black",
             }}
