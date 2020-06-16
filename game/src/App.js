@@ -11,7 +11,9 @@ const App = () => {
       // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
       rows.push(Array.from(Array(numCols), () => 0)); //and create columns. Second parameter of Array.from is a mapping function that gets the value and the key and you can also return what the value is going to be
     }
+    return rows;
   });
+  console.log(grid);
   return <div>Earth to Bob</div>;
 };
 
