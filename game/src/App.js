@@ -13,7 +13,7 @@ const App = () => {
     }
     return rows;
   });
-  console.log(grid);
+  // console.log(grid);
   return <div>Earth to Bob</div>;
 };
 
