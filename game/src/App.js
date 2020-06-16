@@ -15,7 +15,13 @@ const App = () => {
   });
   // console.log(grid);
   return (
-    <div>
+    <div
+      // Created a CSS grid to display or rows and columns
+      style={{
+        display: "grid",
+        gridTemplateColumns: `repeat(${numCols}, 15px)`,
+      }}
+    >
       {/* Display the rows by using .map and getting the rows themselves and grabbing the index*/}
       {grid.map((rows, i) =>
         // And then calling the .map function on the rows object and getting the columns created and the index for each
