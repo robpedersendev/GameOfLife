@@ -113,15 +113,16 @@ const App = () => {
           }
         }}
       >
-        {"Start"}
+        Start
       </button>
       <button
+        visibility={false}
         className="button"
         onClick={() => {
           setStart(!start);
         }}
       >
-        {"Stop"}
+        Stop
       </button>
 
       <button
