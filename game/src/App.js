@@ -14,8 +14,10 @@ const neighborLogic = [
   [-1, -1],
   [1, -1],
 ];
+var generations;
 
 const emptyGrid = () => {
+  generations = 0;
   const rows = []; // Create rows
   for (let i = 0; i < numRows; i++) {
     // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
@@ -43,6 +45,7 @@ const App = () => {
     }
     // C is the current grid
     setGrid((c) => {
+      generations = generations + 0.5;
       // Use produce function again to manipulate a copy
       return produce(c, (gridCopy) => {
         // Iterate through all through rows and columns
@@ -51,6 +54,7 @@ const App = () => {
           for (let j = 0; j < numCols; j++) {
             // n is for neighbors
             let n = 0;
+
             // Check every sub array of the neighborLogic array
             neighborLogic.forEach(([x, y]) => {
               // Set new values for the sub array based on i and j location
@@ -72,7 +76,7 @@ const App = () => {
       });
     });
 
-    setTimeout(sim, 0.01);
+    setTimeout(sim, 1000);
   }, []);
 
   return (
@@ -110,6 +114,9 @@ const App = () => {
       >
         Clear
       </button>
+      <div>
+        <p>{generations}</p>
+      </div>
       <div
         // Created a CSS grid to display or rows and columns
         style={{
