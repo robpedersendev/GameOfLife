@@ -30,8 +30,46 @@ const App = () => {
   // useState hook that controls the state of the start/stop button
   const [start, setStart] = useState(false);
 
-  const ref = useRef(start);
-  ref.current = start;
+  const startRef = useRef(start);
+  startRef.current = start;
+
+  const sim = useCallback(() => {
+    if (!startRef.current) {
+      return;
+    }
+    // C is the current grid
+    setGrid((c) => {
+      // Use produce function again to manipulate a copy
+      return produce(c, (gridCopy) => {
+        // Iterate through all through rows and columns
+        for (let i = 0; i < numRows; i++) {
+          // and iterate through all columns
+          for (let j = 0; j < numCols; j++) {
+            // n is for neighbors
+            let n = 0;
+            // Check every sub array of the neighborLogic array
+            neighborLogic.forEach(([x, y]) => {
+              // Set new values for the sub array based on i and j location
+              const newI = i + x;
+              const newJ = j + y;
+              // Ensure that we don't go outside our 8 neighbors
+              if (newI >= 0 && newI < numRows && newJ >= 0 && newJ < numCols) {
+                n += c[newI][newJ];
+              }
+            });
+
+            if (n < 2 || n > 3) {
+              gridCopy[i][j] = 0;
+            } else if (c[i][j] === 0 && n === 3) {
+              gridCopy[i][j] = 1;
+            }
+          }
+        }
+      });
+    });
+
+    setTimeout(sim, 100);
+  }, []);
 
   return (
     <div>
@@ -39,6 +77,10 @@ const App = () => {
       <button
         onClick={() => {
           setStart(!start);
+          if (!start) {
+            startRef.current = true;
+            sim();
+          }
         }}
       >
         {start ? "Stop" : "Start"}
