@@ -32,7 +32,7 @@ const App = () => {
     // Function only runs once state is initialized
     return emptyGrid();
   });
-  // console.log(grid);
+  console.log(grid);
   // useState hook that controls the state of the start/stop button
   const [start, setStart] = useState(false);
 
