@@ -1,6 +1,16 @@
 import React, { useState, useCallback, useRef } from "react";
 import produce from "immer";
 
+// const button = document.querySelector(".button");
+const buttons = document.querySelectorAll(".button");
+const readOnly = document.getElementById("readOnlyAfterStart");
+
+// const disabledBTN = (button.disabled = true);
+// const activeBTN = (button.disabled = false);
+
+const disabledBTNS = (buttons.disabled = true);
+const activeBTNS = (buttons.disabled = false);
+
 const numRows = 60;
 const numCols = 60;
 
@@ -107,8 +117,6 @@ Randomize Button hooks
         }
       });
     });
-
-    setTimeout(gridSetter, 1000);
   };
 
   /*
@@ -121,16 +129,17 @@ Randomize Button hooks
 
     // C is the current grid
     gridSetter();
+    setTimeout(sim, 1000);
   }, []);
 
   return (
     <div>
       {/* Start and stop button */}
       <button
+        className="button"
         onClick={() => {
           setStart(!start);
           if (!start) {
-            randomize();
             startRef.current = true;
             sim();
           }
@@ -138,41 +147,30 @@ Randomize Button hooks
       >
         {start ? "Stop" : "Start"}
       </button>
+
       <button
+        className="button"
         onClick={() => {
-          setRand1(!rand1);
-          if (!rand1) {
-            randomize();
-            rand1Ref.current = true;
-            sim();
-          }
+          randomize();
         }}
       >
-        {rand1 ? "Stop" : "Random 1"}
+        {"Random 1"}
       </button>
       <button
+        className="button"
         onClick={() => {
-          setRand2(!rand2);
-          if (rand2) {
-            randomize();
-            rand2Ref.current = true;
-            sim();
-          }
+          randomize();
         }}
       >
-        {rand2 ? "Stop" : "Random 2"}
+        {"Random 2"}
       </button>
       <button
+        className="button"
         onClick={() => {
-          setRand3(!rand3);
-          if (!rand3) {
-            randomize();
-            rand3Ref.current = true;
-            sim();
-          }
+          randomize();
         }}
       >
-        {rand3 ? "Stop" : "Random 3"}
+        {"Random 3"}
       </button>
       <button
         onClick={() => {
@@ -185,6 +183,7 @@ Randomize Button hooks
         <p>{generations}</p>
       </div>
       <div
+        id="readOnlyAfterStart"
         // Created a CSS grid to display or rows and columns
         style={{
           display: "grid",
