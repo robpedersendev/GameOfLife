@@ -36,14 +36,46 @@ const App = () => {
   // useState hook that controls the state of the start/stop button
   const [start, setStart] = useState(false);
 
+  /*
+
+Randomize Button hooks
+
+*/
+  const [rand1, setRand1] = useState(false);
+  const [rand2, setRand2] = useState(false);
+  const [rand3, setRand3] = useState(false);
+
+  const randomize = () => {
+    const rows = []; // Create rows
+    for (let i = 0; i < numRows; i++) {
+      // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
+      rows.push(
+        Array.from(Array(numCols), () => (Math.random() > 0.5 ? 1 : 0))
+      ); //and create columns. Second parameter of Array.from is a mapping function that gets the value and the key and you can also return what the value is going to be
+    }
+    setGrid(rows);
+  };
+
   const startRef = useRef(start);
   startRef.current = start;
 
-  const sim = useCallback(() => {
-    if (!startRef.current) {
-      return;
-    }
-    // C is the current grid
+  /*
+  Rand Refs
+  */
+
+  const rand1Ref = useRef(rand1);
+  rand1Ref.current = rand1;
+
+  const rand2Ref = useRef(rand2);
+  rand2Ref.current = rand2;
+
+  const rand3Ref = useRef(rand3);
+  rand3Ref.current = rand3;
+
+  /*
+  Setgrid helper function
+  */
+  const gridSetter = () => {
     setGrid((c) => {
       generations = generations + 0.5;
       // Use produce function again to manipulate a copy
@@ -76,7 +108,19 @@ const App = () => {
       });
     });
 
-    setTimeout(sim, 1000);
+    setTimeout(gridSetter, 1000);
+  };
+
+  /*
+  End setgrid helper function
+  */
+  const sim = useCallback(() => {
+    if (!startRef.current) {
+      return;
+    }
+
+    // C is the current grid
+    gridSetter();
   }, []);
 
   return (
@@ -86,6 +130,7 @@ const App = () => {
         onClick={() => {
           setStart(!start);
           if (!start) {
+            randomize();
             startRef.current = true;
             sim();
           }
@@ -95,17 +140,39 @@ const App = () => {
       </button>
       <button
         onClick={() => {
-          const rows = []; // Create rows
-          for (let i = 0; i < numRows; i++) {
-            // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
-            rows.push(
-              Array.from(Array(numCols), () => (Math.random() > 0.5 ? 1 : 0))
-            ); //and create columns. Second parameter of Array.from is a mapping function that gets the value and the key and you can also return what the value is going to be
+          setRand1(!rand1);
+          if (!rand1) {
+            randomize();
+            rand1Ref.current = true;
+            sim();
           }
-          setGrid(rows);
         }}
       >
-        Random
+        {rand1 ? "Stop" : "Random 1"}
+      </button>
+      <button
+        onClick={() => {
+          setRand2(!rand2);
+          if (rand2) {
+            randomize();
+            rand2Ref.current = true;
+            sim();
+          }
+        }}
+      >
+        {rand2 ? "Stop" : "Random 2"}
+      </button>
+      <button
+        onClick={() => {
+          setRand3(!rand3);
+          if (!rand3) {
+            randomize();
+            rand3Ref.current = true;
+            sim();
+          }
+        }}
+      >
+        {rand3 ? "Stop" : "Random 3"}
       </button>
       <button
         onClick={() => {
