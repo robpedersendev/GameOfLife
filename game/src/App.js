@@ -15,16 +15,20 @@ const neighborLogic = [
   [1, -1],
 ];
 
+const emptyGrid = () => {
+  const rows = []; // Create rows
+  for (let i = 0; i < numRows; i++) {
+    // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
+    rows.push(Array.from(Array(numCols), () => 0)); //and create columns. Second parameter of Array.from is a mapping function that gets the value and the key and you can also return what the value is going to be
+  }
+  return rows;
+};
+
 const App = () => {
   // useState hook that is used for the grid itself
   const [grid, setGrid] = useState(() => {
     // Function only runs once state is initialized
-    const rows = []; // Create rows
-    for (let i = 0; i < numRows; i++) {
-      // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
-      rows.push(Array.from(Array(numCols), () => 0)); //and create columns. Second parameter of Array.from is a mapping function that gets the value and the key and you can also return what the value is going to be
-    }
-    return rows;
+    return emptyGrid();
   });
   // console.log(grid);
   // useState hook that controls the state of the start/stop button
@@ -68,7 +72,7 @@ const App = () => {
       });
     });
 
-    setTimeout(sim, 100);
+    setTimeout(sim, 0.01);
   }, []);
 
   return (
@@ -85,6 +89,27 @@ const App = () => {
       >
         {start ? "Stop" : "Start"}
       </button>
+      <button
+        onClick={() => {
+          const rows = []; // Create rows
+          for (let i = 0; i < numRows; i++) {
+            // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
+            rows.push(
+              Array.from(Array(numCols), () => (Math.random() > 0.5 ? 1 : 0))
+            ); //and create columns. Second parameter of Array.from is a mapping function that gets the value and the key and you can also return what the value is going to be
+          }
+          setGrid(rows);
+        }}
+      >
+        Random
+      </button>
+      <button
+        onClick={() => {
+          setGrid(emptyGrid());
+        }}
+      >
+        Clear
+      </button>
       <div
         // Created a CSS grid to display or rows and columns
         style={{
@@ -98,7 +123,7 @@ const App = () => {
           rows.map((col, j) => (
             // The div holds the unique index and styling based on whether or not the cell is dead or alive
             <div
-              key={"${i}-${j}"}
+              key={`${i}-${j}`}
               // Allow interactivity with the user
               onClick={() => {
                 const newGrid = produce(grid, (gridCopy) => {
