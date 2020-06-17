@@ -1,16 +1,6 @@
 import React, { useState, useCallback, useRef } from "react";
 import produce from "immer";
 
-// const button = document.querySelector(".button");
-const buttons = document.querySelectorAll(".button");
-const readOnly = document.getElementById("readOnlyAfterStart");
-
-// const disabledBTN = (button.disabled = true);
-// const activeBTN = (button.disabled = false);
-
-const disabledBTNS = (buttons.disabled = true);
-const activeBTNS = (buttons.disabled = false);
-
 const numRows = 60;
 const numCols = 60;
 
@@ -46,15 +36,6 @@ const App = () => {
   // useState hook that controls the state of the start/stop button
   const [start, setStart] = useState(false);
 
-  /*
-
-Randomize Button hooks
-
-*/
-  const [rand1, setRand1] = useState(false);
-  const [rand2, setRand2] = useState(false);
-  const [rand3, setRand3] = useState(false);
-
   const randomize = () => {
     const rows = []; // Create rows
     for (let i = 0; i < numRows; i++) {
@@ -68,19 +49,6 @@ Randomize Button hooks
 
   const startRef = useRef(start);
   startRef.current = start;
-
-  /*
-  Rand Refs
-  */
-
-  const rand1Ref = useRef(rand1);
-  rand1Ref.current = rand1;
-
-  const rand2Ref = useRef(rand2);
-  rand2Ref.current = rand2;
-
-  const rand3Ref = useRef(rand3);
-  rand3Ref.current = rand3;
 
   /*
   Setgrid helper function
@@ -145,7 +113,15 @@ Randomize Button hooks
           }
         }}
       >
-        {start ? "Stop" : "Start"}
+        {"Start"}
+      </button>
+      <button
+        className="button"
+        onClick={() => {
+          setStart(!start);
+        }}
+      >
+        {"Stop"}
       </button>
 
       <button
@@ -182,6 +158,7 @@ Randomize Button hooks
       <div>
         <p>{generations}</p>
       </div>
+      {}
       <div
         id="readOnlyAfterStart"
         // Created a CSS grid to display or rows and columns
@@ -191,6 +168,7 @@ Randomize Button hooks
         }}
       >
         {/* Display the rows by using .map and getting the rows themselves and grabbing the index*/}
+
         {grid.map((rows, i) =>
           // And then calling the .map function on the rows object and getting the columns created and the index for each
           rows.map((col, j) => (
@@ -218,5 +196,8 @@ Randomize Button hooks
     </div>
   );
 };
+const pageLoaded = () => {};
+
+pageLoaded();
 
 export default App;
