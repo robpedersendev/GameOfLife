@@ -1,0 +1,11 @@
+We need to have a class with several helper functions
+    We should use a constructor that sets state
+
+Helper functions
+    - Empty the grid
+        - empty state
+    - Setting state (this is where the duplicated data would be sent)
+        - set state 
+    - Create 2nd graph (this is where the original data would be sent)
+        - create a new graph
+        - 
