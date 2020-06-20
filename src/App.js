@@ -14,10 +14,8 @@ const neighborLogic = [
   [-1, -1],
   [1, -1],
 ];
-var generations;
 
 const emptyGrid = () => {
-  generations = 0;
   const rows = []; // Create rows
   for (let i = 0; i < numRows; i++) {
     // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
@@ -33,6 +31,9 @@ const App = () => {
     return emptyGrid();
   });
   console.log(grid);
+
+  const [gen, setGen] = useState(0);
+
   // useState hook that controls the state of the start/stop button
   const [start, setStart] = useState(false);
 
@@ -54,37 +55,34 @@ const App = () => {
   Setgrid helper function
   */
   const gridSetter = () => {
-    setGrid((c) => {
-      generations = generations + 0.5;
-      // Use produce function again to manipulate a copy
-      return produce(c, (gridCopy) => {
-        // Iterate through all through rows and columns
-        for (let i = 0; i < numRows; i++) {
-          // and iterate through all columns
-          for (let j = 0; j < numCols; j++) {
-            // n is for neighbors
-            let n = 0;
+    let curGrid = grid;
+    let newGrid = arrayClone(grid);
+    for (let i = 0; i < numRows; i++) {
+      // and iterate through all columns
+      for (let j = 0; j < numCols; j++) {
+        // n is for neighbors
+        let n = 0;
 
-            // Check every sub array of the neighborLogic array
-            neighborLogic.forEach(([x, y]) => {
-              // Set new values for the sub array based on i and j location
-              const newI = i + x;
-              const newJ = j + y;
-              // Ensure that we don't go outside our 8 neighbors
-              if (newI >= 0 && newI < numRows && newJ >= 0 && newJ < numCols) {
-                n += c[newI][newJ];
-              }
-            });
-
-            if (n < 2 || n > 3) {
-              gridCopy[i][j] = 0;
-            } else if (c[i][j] === 0 && n === 3) {
-              gridCopy[i][j] = 1;
-            }
+        // Check every sub array of the neighborLogic array
+        neighborLogic.forEach(([x, y]) => {
+          // Set new values for the sub array based on i and j location
+          const newI = i + x;
+          const newJ = j + y;
+          // Ensure that we don't go outside our 8 neighbors
+          if (newI >= 0 && newI < numRows && newJ >= 0 && newJ < numCols) {
+            n += curGrid[newI][newJ];
           }
+        });
+
+        if (n < 2 || n > 3) {
+          newGrid[i][j] = 0;
+        } else if (c[i][j] === 0 && n === 3) {
+          newGrid[i][j] = 1;
         }
-      });
-    });
+      }
+    }
+    setGrid(newGrid);
+    setGen((gen += 1));
   };
 
   /*
@@ -197,8 +195,10 @@ const App = () => {
     </div>
   );
 };
-const pageLoaded = () => {};
 
-pageLoaded();
+// stringify makes a clone of the arrays inside the arrays allows for new cloned boxes to be made
+function arrayClone(arr) {
+  return JSON.parse(JSON.stringify(arr));
+}
 
 export default App;
