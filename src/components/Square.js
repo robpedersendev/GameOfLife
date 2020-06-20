@@ -1,20 +1,16 @@
 import React, { Component } from "react";
 import "../index.css";
 
-class Square extends Component {
+const Square = (props) => {
+  const [cols, setCols] = useState(props);
+  const [rows, setRows] = useState(props);
+  const [squareClass, setSquareClass] = useState(props);
+  const [id, setId] = useState(props);
   selectSquare = () => {
-    this.props.selectSquare(this.props.row, this.props.col);
+    setSelectSquare(rows, cols);
   };
 
-  render() {
-    return (
-      <div
-        className={this.props.SquareClass}
-        id={this.props.id}
-        onClick={this.selectSquare}
-      />
-    );
-  }
-}
+  return <div className={squareClass} id={id} onClick={this.selectSquare} />;
+};
 
 export default Square;
