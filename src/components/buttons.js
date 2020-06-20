@@ -29,9 +29,9 @@ class Buttons extends React.Component {
             Clear
           </Button>
           <DropdownButton
-            title="Grids"
+            title="Speeds"
             id="size-menu"
-            onSelect={this.handleSelect}
+            onSelect={this.handleSizeSelect}
           >
             <MenuItem eventKey="1">Slow</MenuItem>
             <MenuItem eventKey="2">Fast</MenuItem>
@@ -39,7 +39,7 @@ class Buttons extends React.Component {
           <DropdownButton
             title="Grids"
             id="size-menu"
-            onSelect={this.handleSelect}
+            onSelect={this.handleSpeedSelect}
           >
             <MenuItem eventKey="1">30x20</MenuItem>
             <MenuItem eventKey="2">60x40</MenuItem>
