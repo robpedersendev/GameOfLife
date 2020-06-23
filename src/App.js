@@ -213,6 +213,13 @@ const App = () => {
         cols={numCols}
         clickSquare={this.clickSquare}
       />
+      <h2>Generations passed: {gen}</h2>
+
+      <h2>
+        RULES OF THE GAME: (I) If the cell is alive and has 2 or 3 neighbors,
+        then it remains alive. (II) Else it dies. If the cell is dead and has
+        exactly 3 neighbors, then it comes to life. Else if remains dead.
+      </h2>
     </div>
   );
 };
