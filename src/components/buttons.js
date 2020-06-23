@@ -2,27 +2,27 @@ import React from "react";
 import "../index.css";
 import {
   ButtonToolbar,
-  MenuItem,
+  DropdownItem,
   DropdownButton,
   Button,
 } from "react-bootstrap";
 
 class Buttons extends React.Component {
   handleSizeSelect = (evt) => {
-    this.props.gridSize(evt);
+    this.props.changeSize(evt);
   };
   handleSpeedSelect = (evt) => {
-    this.props.speed(evt);
+    this.props.changeSpeed(evt);
   };
 
   render() {
     return (
       <div className="center">
         <ButtonToolbar>
-          <Button bsStyle="primary" onClick={this.props.startButton}>
+          <Button bsStyle="primary" onClick={this.props.playBtn}>
             Start
           </Button>
-          <Button bsStyle="danger" onClick={this.props.stopButton}>
+          <Button bsStyle="danger" onClick={this.props.stopBtn}>
             Stop
           </Button>
           <Button bsStyle="success" onClick={this.props.clear}>
@@ -33,17 +33,17 @@ class Buttons extends React.Component {
             id="size-menu"
             onSelect={this.handleSpeedSelect}
           >
-            <MenuItem eventKey="1">Slow</MenuItem>
-            <MenuItem eventKey="2">Fast</MenuItem>
+            <DropdownItem eventKey="1">Slow</DropdownItem>
+            <DropdownItem eventKey="2">Fast</DropdownItem>
           </DropdownButton>
           <DropdownButton
             title="Grids"
             id="size-menu"
             onSelect={this.handleSizeSelect}
           >
-            <MenuItem eventKey="1">30x20</MenuItem>
-            <MenuItem eventKey="2">60x40</MenuItem>
-            <MenuItem eventKey="3">80x60</MenuItem>
+            <DropdownItem eventKey="1">30x20</DropdownItem>
+            <DropdownItem eventKey="2">60x40</DropdownItem>
+            <DropdownItem eventKey="3">80x60</DropdownItem>
           </DropdownButton>
         </ButtonToolbar>
       </div>
