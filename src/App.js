@@ -1,18 +1,6 @@
 import React, { useState, useCallback, useRef } from "react";
 import Grid from "./components/Grid.js";
 import Buttons from "./components/Buttons.js";
-
-const neighborLogic = [
-  [0, 1],
-  [0, -1],
-  [1, 0],
-  [-1, 0],
-  [-1, 1],
-  [1, 1],
-  [-1, -1],
-  [1, -1],
-];
-
 const App = () => {
   // Instantiate State
 
@@ -37,13 +25,24 @@ const App = () => {
 
   //Begin helper functions
 
+  const neighborLogic = [
+    [0, 1],
+    [0, -1],
+    [1, 0],
+    [-1, 0],
+    [-1, 1],
+    [1, 1],
+    [-1, -1],
+    [1, -1],
+  ];
+
   /*
 
   Allow the user to select a square
 
   */
 
-  clickSquare = (row, col) => {
+  const clickSquare = (row, col) => {
     let copy = arrayClone(grid);
     copy[row][col] = !copy[row][col];
     setGrid(copy);
@@ -58,21 +57,21 @@ const App = () => {
   /*
   keep recalling the play function every <retrieved from state> seconds
   */
-  playBtn = () => {
+  const playBtn = () => {
     clearInterval(this.intervalId);
     this.intervalId = setInterval(gridSetter(), speed);
   };
   /* 
   Allow the player to stop the running of the app
   */
-  stopBtn = () => {
+  const stopBtn = () => {
     clearInterval(this.intervalId);
   };
 
   /*
   Allow the user to set the speed of the progression
   */
-  changeSpeed = (speed) => {
+  const changeSpeed = (speed) => {
     switch (speed) {
       case "1":
         setSpeed(100);
@@ -87,7 +86,7 @@ const App = () => {
         playBtn();
         break;
     }
-    clear();
+    this.clear();
   };
 
   // slow = () => {
@@ -107,7 +106,7 @@ const App = () => {
   Allow user to clear the grid to start over
   */
 
-  clear = () => {
+  const clear = () => {
     let grid = Array(numRows)
       .fill()
       .map(() => Array(numCols).fill(false));
@@ -118,7 +117,7 @@ const App = () => {
   /*
   Change the size of the grid based off of user input
   */
-  changeSize = (size) => {
+  const changeSize = (size) => {
     switch (size) {
       case "1":
         setNumRows(30);
@@ -132,7 +131,7 @@ const App = () => {
         setNumRows(80);
         setNumCols(80);
     }
-    clear();
+    this.clear();
   };
   /*
   This will allow for randomization

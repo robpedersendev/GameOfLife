@@ -5,6 +5,7 @@ import {
   MenuItem,
   DropdownButton,
   Button,
+  DropdownItem,
 } from "react-bootstrap";
 
 class Buttons extends React.Component {
@@ -33,17 +34,17 @@ class Buttons extends React.Component {
             id="size-menu"
             onSelect={this.handleSpeedSelect}
           >
-            <MenuItem eventKey="1">Slow</MenuItem>
-            <MenuItem eventKey="2">Fast</MenuItem>
+            <DropdownItem eventKey="1">Slow</DropdownItem>
+            <DropdownItem eventKey="2">Fast</DropdownItem>
           </DropdownButton>
           <DropdownButton
             title="Grids"
             id="size-menu"
             onSelect={this.handleSizeSelect}
           >
-            <MenuItem eventKey="1">30x20</MenuItem>
-            <MenuItem eventKey="2">60x40</MenuItem>
-            <MenuItem eventKey="3">80x60</MenuItem>
+            <DropdownItem eventKey="1">30x20</DropdownItem>
+            <DropdownItem eventKey="2">60x40</DropdownItem>
+            <DropdownItem eventKey="3">80x60</DropdownItem>
           </DropdownButton>
         </ButtonToolbar>
       </div>
