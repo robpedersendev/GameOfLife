@@ -12,13 +12,9 @@ const neighborLogic = [
   [1, -1],
 ];
 
-const emptyGrid = () => {
-  Array(numRows)
-    .fill()
-    .map(() => Array(numCols).fill(false));
-};
-
 const App = () => {
+  // Instantiate State
+
   // useState hook that is used for the grid itself
   const [grid, setGrid] = useState(() => {
     // Function only runs once state is initialized
@@ -32,9 +28,114 @@ const App = () => {
 
   const [numCols, setNumCols] = useState(60);
 
+  const [speed, setSpeed] = useState(1000);
+
   // useState hook that controls the state of the start/stop button
   const [start, setStart] = useState(false);
+  // End State section
 
+  //Begin helper functions
+
+  /*
+
+  Allow the user to select a square
+
+  */
+
+  clickSquare = (row, col) => {
+    let copy = arrayClone(grid);
+    copy[row][col] = !copy[row][col];
+    setGrid(copy);
+  };
+
+  const emptyGrid = () => {
+    Array(numRows)
+      .fill()
+      .map(() => Array(numCols).fill(false));
+  };
+
+  /*
+  keep recalling the play function every <retrieved from state> seconds
+  */
+  playBtn = () => {
+    clearInterval(this.intervalId);
+    this.intervalId = setInterval(play(), speed);
+  };
+  /* 
+  Allow the player to stop the running of the app
+  */
+  stopBtn = () => {
+    clearInterval(this.intervalId);
+  };
+
+  /*
+  Allow the user to set the speed of the progression
+  */
+  changeSpeed = (speed) => {
+    switch (speed) {
+      case "1":
+        setSpeed(100);
+        playBtn();
+        break;
+      case "2":
+        setSpeed(1);
+        playBtn();
+        break;
+      default:
+        setSpeed(1000);
+        playBtn();
+        break;
+    }
+    clear();
+  };
+
+  // slow = () => {
+  //   setSpeed(1000);
+  //   playBtn();
+  // };
+  // fast = () => {
+  //   setSpeed(100);
+  //   playBtn();
+  // };
+  // didYouSeeThat = () => {
+  //   setSpeed(1);
+  //   playBtn();
+  // };
+
+  /*
+  Allow user to clear the grid to start over
+  */
+
+  clear = () => {
+    let grid = Array(numRows)
+      .fill()
+      .map(() => Array(numCols).fill(false));
+    setGrid(grid);
+    setGen(0);
+  };
+
+  /*
+  Change the size of the grid based off of user input
+  */
+  changeSize = (size) => {
+    switch (size) {
+      case "1":
+        setNumRows(30);
+        setNumCols(30);
+        break;
+      case "2":
+        setNumRows(60);
+        setNumCols(60);
+        break;
+      default:
+        setNumRows(80);
+        setNumCols(80);
+    }
+    clear();
+  };
+  /*
+  This will allow for randomization
+  */
   const randomize = () => {
     const rows = []; // Create rows
     for (let i = 0; i < numRows; i++) {
@@ -45,9 +146,6 @@ const App = () => {
     }
     setGrid(rows);
   };
-
-  const startRef = useRef(start);
-  startRef.current = start;
 
   /*
   Setgrid helper function
@@ -74,10 +172,9 @@ const App = () => {
           // Ensure that we don't go outside our 8 neighbors
           if (newI >= 0 && newI < numRows && newJ >= 0 && newJ < numCols) {
             n += curGrid[newI][newJ];
-            setGen(count2);
           }
         });
-        setGen(count1);
+
         if (n < 2 || n > 3) {
           newGrid[i][j] = 0;
         } else if (curGrid[i][j] === 0 && n === 3) {
