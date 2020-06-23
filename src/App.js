@@ -196,18 +196,18 @@ const App = () => {
     <div>
       <h1>Bob's interpretation of Conway's Game of Life</h1>
       <Buttons
-        startBtn={this.startBtn}
-        stopBtn={this.stopBtn}
-        changeSpeed={this.changeSpeed}
-        clear={this.clear}
-        randomize={this.randomize}
-        changeSize={this.changeSize}
+        playBtn={playBtn}
+        stopBtn={stopBtn}
+        changeSpeed={changeSpeed}
+        clear={clear}
+        randomize={randomize}
+        changeSize={changeSize}
       />
       <Grid
         grid={grid}
         rows={numRows}
         cols={numCols}
-        clickSquare={this.clickSquare}
+        clickSquare={clickSquare}
       />
       <h2>Generations passed: {gen}</h2>
 
