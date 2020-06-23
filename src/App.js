@@ -156,12 +156,8 @@ const App = () => {
     let newGrid = arrayClone(grid);
 
     for (let i = 0; i < numRows; i++) {
-      let count1 = 0;
-      count1++;
       // and iterate through all columns
       for (let j = 0; j < numCols; j++) {
-        let count2 = 0;
-        count2++;
         // n is for neighbors
         let n = 0;
 
@@ -200,102 +196,7 @@ const App = () => {
   //   setTimeout(sim, 1000);
   // };
 
-  return (
-    <div>
-      {/* Start and stop button */}
-      <button
-        className="button"
-        onClick={() => {
-          setStart(!start);
-          if (!start) {
-            startRef.current = true;
-            sim();
-          }
-        }}
-      >
-        Start
-      </button>
-      <button
-        visibility={false}
-        className="button"
-        onClick={() => {
-          setStart(!start);
-        }}
-      >
-        Stop
-      </button>
-
-      <button
-        className="button"
-        onClick={() => {
-          randomize();
-        }}
-      >
-        {"Random 1"}
-      </button>
-      <button
-        className="button"
-        onClick={() => {
-          randomize();
-        }}
-      >
-        {"Random 2"}
-      </button>
-      <button
-        className="button"
-        onClick={() => {
-          randomize();
-        }}
-      >
-        {"Random 3"}
-      </button>
-      <button
-        onClick={() => {
-          setGrid(emptyGrid());
-        }}
-      >
-        Clear
-      </button>
-      <div>
-        <p>{gen}</p>
-      </div>
-      {}
-      <div
-        id="readOnlyAfterStart"
-        // Created a CSS grid to display or rows and columns
-        style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${numCols}, 12px)`,
-        }}
-      >
-        {/* Display the rows by using .map and getting the rows themselves and grabbing the index*/}
-
-        {grid.map((rows, i) =>
-          // And then calling the .map function on the rows object and getting the columns created and the index for each
-          rows.map((col, j) => (
-            // The div holds the unique index and styling based on whether or not the cell is dead or alive
-            <div
-              key={`${i}-${j}`}
-              // Allow interactivity with the user
-              onClick={() => {
-                const newGrid = produce(grid, (gridCopy) => {
-                  // Act as a toggle. If alive, die, if dead, come alive.
-                  gridCopy[i][j] = grid[i][j] ? 0 : 1;
-                });
-                setGrid(newGrid);
-              }}
-              style={{
-                width: 10,
-                height: 10,
-                backgroundColor: grid[i][j] ? "black" : undefined,
-                border: "solid 1px black",
-              }}
-            />
-          ))
-        )}
-      </div>
-    </div>
-  );
+  return <div></div>;
 };
 
 // stringify makes a clone of the arrays inside the arrays allows for new cloned boxes to be made
