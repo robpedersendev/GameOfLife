@@ -30,7 +30,7 @@ const Grid = (props) => {
           boxId={boxId}
           row={i}
           col={j}
-          selectSquare={selectSquare}
+          selectSquare={this.props.clickSquare}
         />
       );
     }

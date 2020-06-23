@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../index.css";
 import {
   ButtonToolbar,
@@ -11,19 +11,26 @@ const Buttons = (props) => {
   const [gridSize, setGridSize] = useState(props);
   const [speed, setSpeed] = useState(props);
   const handleSizeSelect = (evt) => {
-    this.props.changeSize(evt);
+    this.props.setGridSize(evt);
   };
   const handleSpeedSelect = (evt) => {
-    this.props.speed(evt);
+    this.props.changeSpeed(evt);
   };
+
+  useEffect(() => {
+    setGridSize(props);
+  }, [props]);
+  useEffect(() => {
+    setGridSize(props);
+  }, [props]);
 
   return (
     <div className="center">
       <ButtonToolbar>
-        <Button bsStyle="primary" onClick={this.props.startButton}>
+        <Button bsStyle="primary" onClick={this.props.playBtn}>
           Start
         </Button>
-        <Button bsStyle="danger" onClick={this.props.stopButton}>
+        <Button bsStyle="danger" onClick={this.props.stopBtn}>
           Stop
         </Button>
         <Button bsStyle="success" onClick={this.props.clear}>
@@ -34,17 +41,18 @@ const Buttons = (props) => {
           id="size-menu"
           onSelect={this.handleSpeedSelect}
         >
-          <DropdownItem eventKey="1">Slow</DropdownItem>
-          <DropdownItem eventKey="2">Fast</DropdownItem>
+          <DropdownItem eventKey="1">Way to fast</DropdownItem>
+          <DropdownItem eventKey="2">Thats more like</DropdownItem>
+          <DropdownItem eventKey="">Is this thing on?</DropdownItem>
         </DropdownButton>
         <DropdownButton
           title="Grids"
           id="size-menu"
           onSelect={this.handleSizeSelect}
         >
-          <DropdownItem eventKey="1">30x20</DropdownItem>
-          <DropdownItem eventKey="2">60x40</DropdownItem>
-          <DropdownItem eventKey="3">80x60</DropdownItem>
+          <DropdownItem eventKey="1">30x30</DropdownItem>
+          <DropdownItem eventKey="2">60x60</DropdownItem>
+          <DropdownItem eventKey="3">80x80</DropdownItem>
         </DropdownButton>
       </ButtonToolbar>
     </div>

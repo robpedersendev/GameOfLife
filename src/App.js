@@ -75,15 +75,15 @@ Handle the changing/updating of props
   const changeSpeed = (speed) => {
     switch (speed) {
       case "1":
-        setSpeed(100);
-        playBtn();
-        break;
-      case "2":
         setSpeed(1);
         playBtn();
         break;
-      default:
+      case "2":
         setSpeed(1000);
+        playBtn();
+        break;
+      default:
+        setSpeed(10000);
         playBtn();
         break;
     }
