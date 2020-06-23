@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Grid from "./components/Grid.js";
 import Buttons from "./components/Buttons.js";
 const App = () => {
@@ -25,6 +25,10 @@ const App = () => {
   // useState hook that controls the state of the start/stop button
   const [start, setStart] = useState(false);
   // End State section
+
+  /*
+Handle the changing/updating of props
+*/
 
   //Begin helper functions
 

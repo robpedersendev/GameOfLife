@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../index.css";
 import Square from "./Square.js";
 
@@ -9,6 +9,13 @@ const Grid = (props) => {
   const [selectSquare, setSelectSquare] = useState(props);
   const width = cols * 14 + 1;
   let rowsArr = [];
+
+  useEffect(() => {
+    setGrid(props);
+    setRows(props);
+    setCols(props);
+    setSelectSquare(props);
+  }, [props]);
 
   let squareClass = "";
   for (let i = 0; i < rows; i++) {
