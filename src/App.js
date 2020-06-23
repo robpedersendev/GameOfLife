@@ -196,7 +196,19 @@ const App = () => {
   //   setTimeout(sim, 1000);
   // };
 
-  return <div></div>;
+  return (
+    <div>
+      <h1>Bob's interpretation of Conway's Game of Life</h1>
+      <Buttons
+        startBtn={this.startBtn}
+        stopBtn={this.stopBtn}
+        changeSpeed={this.changeSpeed}
+        clear={this.clear}
+        randomize={this.randomize}
+        changeSize={this.changeSize}
+      />
+    </div>
+  );
 };
 
 // stringify makes a clone of the arrays inside the arrays allows for new cloned boxes to be made
