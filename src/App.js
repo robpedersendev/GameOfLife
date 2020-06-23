@@ -1,9 +1,6 @@
 import React, { useState, useCallback, useRef } from "react";
 import produce from "immer";
 
-const numRows = 60;
-const numCols = 60;
-
 const neighborLogic = [
   [0, 1],
   [0, -1],
@@ -16,12 +13,9 @@ const neighborLogic = [
 ];
 
 const emptyGrid = () => {
-  const rows = []; // Create rows
-  for (let i = 0; i < numRows; i++) {
-    // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
-    rows.push(Array.from(Array(numCols), () => 0)); //and create columns. Second parameter of Array.from is a mapping function that gets the value and the key and you can also return what the value is going to be
-  }
-  return rows;
+  Array(numRows)
+    .fill()
+    .map(() => Array(numCols).fill(false));
 };
 
 const App = () => {
@@ -33,6 +27,10 @@ const App = () => {
   console.log(grid);
 
   const [gen, setGen] = useState(0);
+
+  const [numRows, setNumRows] = useState(60);
+
+  const [numCols, setNumCols] = useState(60);
 
   // useState hook that controls the state of the start/stop button
   const [start, setStart] = useState(false);
@@ -57,9 +55,14 @@ const App = () => {
   const gridSetter = () => {
     let curGrid = grid;
     let newGrid = arrayClone(grid);
+
     for (let i = 0; i < numRows; i++) {
+      let count1 = 0;
+      count1++;
       // and iterate through all columns
       for (let j = 0; j < numCols; j++) {
+        let count2 = 0;
+        count2++;
         // n is for neighbors
         let n = 0;
 
@@ -71,24 +74,24 @@ const App = () => {
           // Ensure that we don't go outside our 8 neighbors
           if (newI >= 0 && newI < numRows && newJ >= 0 && newJ < numCols) {
             n += curGrid[newI][newJ];
+            setGen(count2);
           }
         });
-
+        setGen(count1);
         if (n < 2 || n > 3) {
           newGrid[i][j] = 0;
-        } else if (c[i][j] === 0 && n === 3) {
+        } else if (curGrid[i][j] === 0 && n === 3) {
           newGrid[i][j] = 1;
         }
       }
     }
     setGrid(newGrid);
-    setGen((gen += 1));
   };
 
   /*
   End setgrid helper function
   */
-  const sim = useCallback(() => {
+  const sim = () => {
     if (!startRef.current) {
       return;
     }
@@ -96,7 +99,7 @@ const App = () => {
     // C is the current grid
     gridSetter();
     setTimeout(sim, 1000);
-  }, []);
+  };
 
   return (
     <div>
@@ -155,7 +158,7 @@ const App = () => {
         Clear
       </button>
       <div>
-        <p>{generations}</p>
+        <p>{gen}</p>
       </div>
       {}
       <div
