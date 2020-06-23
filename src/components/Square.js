@@ -11,7 +11,7 @@ const Square = (props) => {
     setSelectSquare(rows, cols);
   };
 
-  return <div className={squareClass} id={id} onClick={this.handleClick} />;
+  return <div className={squareClass} id={id} onClick={handleClick} />;
 };
 
 export default Square;

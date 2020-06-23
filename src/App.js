@@ -7,14 +7,17 @@ const App = () => {
 
   const [numCols, setNumCols] = useState(60);
   const emptyGrid = () => {
-    Array(numRows)
-      .fill()
-      .map(() => Array(numCols).fill(false));
+    const rows = []; // Create rows
+    for (let i = 0; i < numRows; i++) {
+      // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
+      rows.push(Array.from(Array(numCols), () => 0)); //and create columns. Second parameter of Array.from is a mapping function that gets the value and the key and you can also return what the value is going to be
+    }
+    return rows;
   };
   // useState hook that is used for the grid itself
   const [grid, setGrid] = useState(() => {
     // Function only runs once state is initialized
-    return emptyGrid();
+    emptyGrid();
   });
   console.log(grid);
 
@@ -89,7 +92,7 @@ Handle the changing/updating of props
         playBtn();
         break;
     }
-    this.clear();
+    clear();
   };
 
   // slow = () => {
@@ -134,7 +137,7 @@ Handle the changing/updating of props
         setNumRows(80);
         setNumCols(80);
     }
-    this.clear();
+    clear();
   };
   /*
   This will allow for randomization
@@ -156,6 +159,7 @@ Handle the changing/updating of props
   const gridSetter = () => {
     let curGrid = grid;
     let newGrid = arrayClone(grid);
+    console.log(newGrid);
 
     for (let i = 0; i < numRows; i++) {
       // and iterate through all columns
@@ -208,15 +212,16 @@ Handle the changing/updating of props
         clear={clear}
         randomize={randomize}
         changeSize={changeSize}
-      />
+      />{" "}
+      {console.log(grid)}
       <Grid
         grid={grid}
         rows={numRows}
         cols={numCols}
         clickSquare={clickSquare}
-      />
+      />{" "}
+      {console.log(grid)}
       <h2>Generations passed: {gen}</h2>
-
       <h2>
         RULES OF THE GAME: (I) If the cell is alive and has 2 or 3 neighbors,
         then it remains alive. (II) Else it dies. If the cell is dead and has
