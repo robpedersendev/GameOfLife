@@ -7,15 +7,9 @@ const Grid = (props) => {
   const [rows, setRows] = useState(props);
   const [grid, setGrid] = useState(props);
   const [selectSquare, setSelectSquare] = useState(props);
-  const width = cols * 14 + 1;
+  const width = props.cols * 14 + 1;
+  console.log(grid);
   let rowsArr = [];
-
-  useEffect(() => {
-    setGrid(props);
-    setRows(props);
-    setCols(props);
-    setSelectSquare(props);
-  }, [props]);
 
   let squareClass = "";
   for (let i = 0; i < rows; i++) {

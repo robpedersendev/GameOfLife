@@ -20,6 +20,8 @@ const App = () => {
 
   const [gen, setGen] = useState(0);
 
+  const [interval, setInterval] = useState(null);
+
   const [speed, setSpeed] = useState(1000);
 
   // useState hook that controls the state of the start/stop button
@@ -59,14 +61,14 @@ Handle the changing/updating of props
   keep recalling the play function every <retrieved from state> seconds
   */
   const playBtn = () => {
-    clearInterval(this.intervalId);
-    this.intervalId = setInterval(gridSetter(), speed);
+    setInterval(null);
+    setInterval(gridSetter, speed);
   };
   /* 
   Allow the player to stop the running of the app
   */
   const stopBtn = () => {
-    clearInterval(this.intervalId);
+    setInterval(null);
   };
 
   /*

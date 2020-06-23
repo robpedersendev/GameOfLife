@@ -19,14 +19,17 @@ class Buttons extends React.Component {
     return (
       <div className="center">
         <ButtonToolbar>
-          <Button bsStyle="primary" onClick={this.props.playBtn}>
+          <Button color="primary" onClick={this.props.playBtn}>
             Start
           </Button>
-          <Button bsStyle="danger" onClick={this.props.stopBtn}>
+          <Button color="danger" onClick={this.props.stopBtn}>
             Stop
           </Button>
-          <Button bsStyle="success" onClick={this.props.clear}>
+          <Button color="success" onClick={this.props.clear}>
             Clear
+          </Button>
+          <Button color="danger" onClick={this.props.randomize}>
+            Randomize
           </Button>
           <DropdownButton
             title="Speeds"
