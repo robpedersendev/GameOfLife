@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef } from "react";
-import produce from "immer";
+import Grid from "./components/Grid.js";
+import Buttons from "./components/Buttons.js";
 
 const neighborLogic = [
   [0, 1],
