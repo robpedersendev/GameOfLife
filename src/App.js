@@ -59,7 +59,7 @@ const App = () => {
   */
   playBtn = () => {
     clearInterval(this.intervalId);
-    this.intervalId = setInterval(play(), speed);
+    this.intervalId = setInterval(gridSetter(), speed);
   };
   /* 
   Allow the player to stop the running of the app
@@ -183,20 +183,21 @@ const App = () => {
       }
     }
     setGrid(newGrid);
+    setGen(gen + 1);
   };
 
-  /*
-  End setgrid helper function
-  */
-  const sim = () => {
-    if (!startRef.current) {
-      return;
-    }
+  // /*
+  // End setgrid helper function
+  // */
+  // const sim = () => {
+  //   if (!startRef.current) {
+  //     return;
+  //   }
 
-    // C is the current grid
-    gridSetter();
-    setTimeout(sim, 1000);
-  };
+  //   // C is the current grid
+  //   gridSetter();
+  //   setTimeout(sim, 1000);
+  // };
 
   return (
     <div>
