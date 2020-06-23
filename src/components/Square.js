@@ -6,7 +6,7 @@ const Square = (props) => {
   const [rows, setRows] = useState(props);
   const [squareClass, setSquareClass] = useState(props);
   const [id, setId] = useState(props);
-  const [selectSquare, setSelectSquare] = useState(props);
+  const [selectSquare, setSelectSquare] = useState();
   const handleClick = () => {
     setSelectSquare(rows, cols);
   };

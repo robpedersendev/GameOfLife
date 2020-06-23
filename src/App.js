@@ -3,7 +3,14 @@ import Grid from "./components/Grid.js";
 import Buttons from "./components/Buttons.js";
 const App = () => {
   // Instantiate State
+  const [numRows, setNumRows] = useState(60);
 
+  const [numCols, setNumCols] = useState(60);
+  const emptyGrid = () => {
+    Array(numRows)
+      .fill()
+      .map(() => Array(numCols).fill(false));
+  };
   // useState hook that is used for the grid itself
   const [grid, setGrid] = useState(() => {
     // Function only runs once state is initialized
@@ -12,10 +19,6 @@ const App = () => {
   console.log(grid);
 
   const [gen, setGen] = useState(0);
-
-  const [numRows, setNumRows] = useState(60);
-
-  const [numCols, setNumCols] = useState(60);
 
   const [speed, setSpeed] = useState(1000);
 
@@ -46,12 +49,6 @@ const App = () => {
     let copy = arrayClone(grid);
     copy[row][col] = !copy[row][col];
     setGrid(copy);
-  };
-
-  const emptyGrid = () => {
-    Array(numRows)
-      .fill()
-      .map(() => Array(numCols).fill(false));
   };
 
   /*
