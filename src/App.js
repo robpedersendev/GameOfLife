@@ -207,6 +207,12 @@ const App = () => {
         randomize={this.randomize}
         changeSize={this.changeSize}
       />
+      <Grid
+        grid={grid}
+        rows={numRows}
+        cols={numCols}
+        clickSquare={this.clickSquare}
+      />
     </div>
   );
 };
