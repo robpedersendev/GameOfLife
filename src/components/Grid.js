@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "../index.css";
+
 import Square from "./Square.js";
 
 const Grid = ({ cols, rows, grid, clickSquare }) => {
-  const width = this.props.cols * 14 + 1;
-  console.log(this.props.grid);
+  const width = cols * 14 + 1;
+  console.log(grid);
   let rowsArr = [];
 
   let squareClass = "";

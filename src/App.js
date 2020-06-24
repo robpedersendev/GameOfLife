@@ -16,12 +16,16 @@ const App = () => {
   };
   // useState hook that is used for the grid itself
   const [grid, setGrid] = useState(() => {
-    // Function only runs once state is initialized
-    emptyGrid();
+    const rows = []; // Create rows
+    for (let i = 0; i < numRows; i++) {
+      // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
+      rows.push(Array.from(Array(numCols), () => 0)); //and create columns. Second parameter of Array.from is a mapping function that gets the value and the key and you can also return what the value is going to be
+    }
+    return rows;
   });
   console.log(grid);
 
-  const [gen, setGen] = useState(0);
+  const [gen, setGen] = useState();
 
   const [interval, setInterval] = useState(null);
 
@@ -35,6 +39,26 @@ const App = () => {
 Handle the changing/updating of props
 */
 
+  // useEffect(() => {
+  //   setGen(gen);
+  //   setInterval(props);
+  //   setSpeed(props);
+  //   setStart(props);
+  //   setGrid(
+  //     // Function only runs once state is initialized
+  //     emptyGrid()
+  //   );
+  //   setNumRows(props);
+  //   setNumCols(props);
+  // }, [props]);
+
+  const setGenCount = useRef(null);
+  const setIntervalInfo = useRef(null);
+  const setSpeedInfo = useRef(null);
+  const setStartInfo = useRef(null);
+  const setGridInfo = useRef(null);
+  const setNumRowsInfo = useRef(null);
+  const setNumColsInfo = useRef(null);
   //Begin helper functions
 
   const neighborLogic = [
@@ -184,6 +208,7 @@ Handle the changing/updating of props
           newGrid[i][j] = 1;
         }
       }
+      return newGrid;
     }
     setGrid(newGrid);
     setGen(gen + 1);

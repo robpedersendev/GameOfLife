@@ -1,5 +1,4 @@
 import React, { useState, Component } from "react";
-import "../index.css";
 
 const Square = (props) => {
   const [cols, setCols] = useState(props);
