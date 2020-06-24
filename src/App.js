@@ -76,11 +76,9 @@ class App extends React {
   };
 
   clear = () => {
-    let grid = Array(numRows)
+    let grid = Array(this.numRows)
       .fill()
-      .map(() => Array(numCols).fill(false));
-    setGrid(grid);
-    setGen(0);
+      .map(() => Array(this.numCols).fill(false));
   };
 
   /*
