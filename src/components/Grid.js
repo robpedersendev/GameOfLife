@@ -3,6 +3,9 @@ import React, { Component } from "react";
 import Square from "./Square.js";
 
 class Grid extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     const width = this.props.cols * 14 + 1;
     console.log(this.props.grid);
