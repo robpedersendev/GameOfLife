@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Grid from "./components/Grid.js";
 import Buttons from "./components/Buttons.js";
-class App extends React {
+class App extends Component {
   constructor() {
+    super();
     this.speed = 1000;
     this.numRows = 30;
     this.numCols = 50;
@@ -183,7 +184,7 @@ class App extends React {
           clickSquare={this.clickSquare}
         />{" "}
         {console.log(this.state.grid)}
-        <h2>Generations passed: {gen}</h2>
+        <h2>Generations passed: {this.state.gen}</h2>
         <h2>
           RULES OF THE GAME: (I) If the cell is alive and has 2 or 3 neighbors,
           then it remains alive. (II) Else it dies. If the cell is dead and has
