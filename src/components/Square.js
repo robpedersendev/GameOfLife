@@ -1,16 +1,21 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 
-const Square = (props) => {
-  const [cols, setCols] = useState(props);
-  const [rows, setRows] = useState(props);
-  const [squareClass, setSquareClass] = useState(props);
-  const [id, setId] = useState(props);
-  const [selectSquare, setSelectSquare] = useState();
-  const handleClick = () => {
-    setSelectSquare(rows, cols);
-  };
+class Square extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const handleClick = () => {
+      this.props.selectSquare(this.props.row, this.props.col);
+    };
 
-  return <div className={squareClass} id={id} onClick={handleClick} />;
-};
-
+    return (
+      <div
+        className={this.props.squareClass}
+        id={this.props.id}
+        onClick={this.handleClick}
+      />
+    );
+  }
+}
 export default Square;
