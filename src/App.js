@@ -1,60 +1,21 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { Component } from "react";
 import Grid from "./components/Grid.js";
 import Buttons from "./components/Buttons.js";
-const App = () => {
-  // Instantiate State
-  const [numRows, setNumRows] = useState(60);
-
-  const [numCols, setNumCols] = useState(60);
-
-  // useState hook that is used for the grid itself
-  const [grid, setGrid] = useState(() => {
-    const rows = []; // Create rows
-    for (let i = 0; i < numRows; i++) {
-      // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
-      rows.push(Array.from(Array(numCols), () => 0)); //and create columns. Second parameter of Array.from is a mapping function that gets the value and the key and you can also return what the value is going to be
-    }
-    return rows;
-  });
-  console.log(grid);
-
-  const [gen, setGen] = useState();
-
-  const [interval, setInterval] = useState(null);
-
-  const [speed, setSpeed] = useState(1000);
-
-  // useState hook that controls the state of the start/stop button
-  const [start, setStart] = useState(false);
-  // End State section
-
-  /*
-Handle the changing/updating of props
-*/
-
-  // useEffect(() => {
-  //   setGen(gen);
-  //   setInterval(props);
-  //   setSpeed(props);
-  //   setStart(props);
-  //   setGrid(
-  //     // Function only runs once state is initialized
-  //     emptyGrid()
-  //   );
-  //   setNumRows(props);
-  //   setNumCols(props);
-  // }, [props]);
-
-  const setGenCount = useRef(null);
-  const setIntervalInfo = useRef(null);
-  const setSpeedInfo = useRef(null);
-  const setStartInfo = useRef(null);
-  const setGridInfo = useRef(null);
-  const setNumRowsInfo = useRef(null);
-  const setNumColsInfo = useRef(null);
+class App extends React {
+  constructor() {
+    this.speed = 1000;
+    this.numRows = 30;
+    this.numCols = 50;
+    this.state = {
+      generation: 0,
+      grid: Array(this.rows)
+        .fill()
+        .map(() => Array(this.cols).fill(false)),
+    };
+  }
   //Begin helper functions
 
-  const neighborLogic = [
+  neighborLogic = [
     [0, 1],
     [0, -1],
     [1, 0],
@@ -71,7 +32,7 @@ Handle the changing/updating of props
 
   */
 
-  const clickSquare = (row, col) => {
+  clickSquare = (row, col) => {
     let copy = arrayClone(grid);
     copy[row][col] = !copy[row][col];
     setGrid(copy);
@@ -80,21 +41,21 @@ Handle the changing/updating of props
   /*
   keep recalling the play function every <retrieved from state> seconds
   */
-  const playBtn = () => {
+  playBtn = () => {
     setInterval(null);
     setInterval(gridSetter, speed);
   };
-  /* 
+  /*
   Allow the player to stop the running of the app
   */
-  const stopBtn = () => {
+  stopBtn = () => {
     setInterval(null);
   };
 
   /*
   Allow the user to set the speed of the progression
   */
-  const changeSpeed = (speed) => {
+  changeSpeed = (speed) => {
     switch (speed) {
       case "1":
         setSpeed(1);
@@ -112,24 +73,7 @@ Handle the changing/updating of props
     clear();
   };
 
-  // slow = () => {
-  //   setSpeed(1000);
-  //   playBtn();
-  // };
-  // fast = () => {
-  //   setSpeed(100);
-  //   playBtn();
-  // };
-  // didYouSeeThat = () => {
-  //   setSpeed(1);
-  //   playBtn();
-  // };
-
-  /*
-  Allow user to clear the grid to start over
-  */
-
-  const clear = () => {
+  clear = () => {
     let grid = Array(numRows)
       .fill()
       .map(() => Array(numCols).fill(false));
@@ -140,7 +84,7 @@ Handle the changing/updating of props
   /*
   Change the size of the grid based off of user input
   */
-  const changeSize = (size) => {
+  changeSize = (size) => {
     switch (size) {
       case "1":
         setNumRows(30);
@@ -159,7 +103,7 @@ Handle the changing/updating of props
   /*
   This will allow for randomization
   */
-  const randomize = () => {
+  randomize = () => {
     const rows = []; // Create rows
     for (let i = 0; i < numRows; i++) {
       // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
@@ -173,7 +117,7 @@ Handle the changing/updating of props
   /*
   Setgrid helper function
   */
-  const gridSetter = () => {
+  gridSetter = () => {
     let curGrid = grid;
     let newGrid = arrayClone(grid);
     console.log(newGrid);
@@ -206,49 +150,36 @@ Handle the changing/updating of props
     setGrid(newGrid);
     setGen(gen + 1);
   };
-
-  // /*
-  // End setgrid helper function
-  // */
-  // const sim = () => {
-  //   if (!startRef.current) {
-  //     return;
-  //   }
-
-  //   // C is the current grid
-  //   gridSetter();
-  //   setTimeout(sim, 1000);
-  // };
-
-  return (
-    <div>
-      <h1>Bob's interpretation of Conway's Game of Life</h1>
-      <Buttons
-        playBtn={playBtn}
-        stopBtn={stopBtn}
-        changeSpeed={changeSpeed}
-        clear={clear}
-        randomize={randomize}
-        changeSize={changeSize}
-      />{" "}
-      {console.log(grid)}
-      <Grid
-        grid={grid}
-        rows={numRows}
-        cols={numCols}
-        clickSquare={clickSquare}
-      />{" "}
-      {console.log(grid)}
-      <h2>Generations passed: {gen}</h2>
-      <h2>
-        RULES OF THE GAME: (I) If the cell is alive and has 2 or 3 neighbors,
-        then it remains alive. (II) Else it dies. If the cell is dead and has
-        exactly 3 neighbors, then it comes to life. Else if remains dead.
-      </h2>
-    </div>
-  );
-};
-
+  render() {
+    return (
+      <div>
+        <h1>Bob's interpretation of Conway's Game of Life</h1>
+        <Buttons
+          playBtn={playBtn}
+          stopBtn={stopBtn}
+          changeSpeed={changeSpeed}
+          clear={clear}
+          randomize={randomize}
+          changeSize={changeSize}
+        />{" "}
+        {console.log(grid)}
+        <Grid
+          grid={grid}
+          rows={numRows}
+          cols={numCols}
+          clickSquare={clickSquare}
+        />{" "}
+        {console.log(grid)}
+        <h2>Generations passed: {gen}</h2>
+        <h2>
+          RULES OF THE GAME: (I) If the cell is alive and has 2 or 3 neighbors,
+          then it remains alive. (II) Else it dies. If the cell is dead and has
+          exactly 3 neighbors, then it comes to life. Else if remains dead.
+        </h2>
+      </div>
+    );
+  }
+}
 // stringify makes a clone of the arrays inside the arrays allows for new cloned boxes to be made
 function arrayClone(arr) {
   return JSON.parse(JSON.stringify(arr));
