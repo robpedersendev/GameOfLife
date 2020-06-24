@@ -28,14 +28,16 @@ class App extends React {
 
   /*
 
-  Allow the user to select a square
+  Allow the user to select a square to turn a square on or off
 
   */
 
   clickSquare = (row, col) => {
     let copy = arrayClone(grid);
     copy[row][col] = !copy[row][col];
-    setGrid(copy);
+    this.setState({
+      grid: copy,
+    });
   };
 
   /*
