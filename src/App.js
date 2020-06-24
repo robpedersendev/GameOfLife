@@ -9,13 +9,12 @@ class App extends Component {
     this.numCols = 50;
     this.state = {
       gen: 0,
-      grid: Array(this.rows)
+      grid: Array(this.numRows)
         .fill()
-        .map(() => Array(this.cols).fill(false)),
+        .map(() => Array(this.numCols).fill(0)),
     };
   }
   //Begin helper functions
-
   neighborLogic = [
     [0, 1],
     [0, -1],
@@ -79,7 +78,7 @@ class App extends Component {
   clear = () => {
     let grid = Array(this.numRows)
       .fill()
-      .map(() => Array(this.numCols).fill(false));
+      .map(() => Array(this.numCols).fill(0));
     this.setState({
       grid: grid,
       gen: 0,
@@ -183,7 +182,6 @@ class App extends Component {
           cols={this.numCols}
           clickSquare={this.clickSquare}
         />{" "}
-        {console.log(this.state.grid)}
         <h2>Generations passed: {this.state.gen}</h2>
         <h2>
           RULES OF THE GAME: (I) If the cell is alive and has 2 or 3 neighbors,
