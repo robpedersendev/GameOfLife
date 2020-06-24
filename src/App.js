@@ -44,8 +44,8 @@ class App extends React {
   keep recalling the play function every <retrieved from state> seconds
   */
   playBtn = () => {
-    setInterval(null);
-    setInterval(gridSetter, speed);
+    clearInterval(this.intervalId);
+    this.intervalId = setInterval(this.gridSetter, this.speed);
   };
   /*
   Allow the player to stop the running of the app
