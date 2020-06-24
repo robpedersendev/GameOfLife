@@ -109,13 +109,15 @@ class App extends React {
   */
   randomize = () => {
     const rows = []; // Create rows
-    for (let i = 0; i < numRows; i++) {
+    for (let i = 0; i < this.numRows; i++) {
       // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
       rows.push(
-        Array.from(Array(numCols), () => (Math.random() > 0.5 ? 1 : 0))
+        Array.from(Array(this.numCols), () => (Math.random() > 0.5 ? 1 : 0))
       ); //and create columns. Second parameter of Array.from is a mapping function that gets the value and the key and you can also return what the value is going to be
     }
-    setGrid(rows);
+    this.setState({
+      grid: rows,
+    });
   };
 
   /*
