@@ -128,19 +128,24 @@ class App extends React {
     let newGrid = arrayClone(this.state.grid);
     console.log(newGrid);
 
-    for (let i = 0; i < numRows; i++) {
+    for (let i = 0; i < this.numRows; i++) {
       // and iterate through all columns
-      for (let j = 0; j < numCols; j++) {
+      for (let j = 0; j < this.numCols; j++) {
         // n is for neighbors
         let n = 0;
 
         // Check every sub array of the neighborLogic array
-        neighborLogic.forEach(([x, y]) => {
+        this.neighborLogic.forEach(([x, y]) => {
           // Set new values for the sub array based on i and j location
           const newI = i + x;
           const newJ = j + y;
           // Ensure that we don't go outside our 8 neighbors
-          if (newI >= 0 && newI < numRows && newJ >= 0 && newJ < numCols) {
+          if (
+            newI >= 0 &&
+            newI < this.numRows &&
+            newJ >= 0 &&
+            newJ < this.numCols
+          ) {
             n += curGrid[newI][newJ];
           }
         });
