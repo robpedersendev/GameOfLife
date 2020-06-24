@@ -33,7 +33,7 @@ class App extends React {
   */
 
   clickSquare = (row, col) => {
-    let copy = arrayClone(grid);
+    let copy = arrayClone(this.state.grid);
     copy[row][col] = !copy[row][col];
     this.setState({
       grid: copy,
@@ -80,7 +80,7 @@ class App extends React {
       .fill()
       .map(() => Array(this.numCols).fill(false));
     this.setState({
-      gri: grid,
+      grid: grid,
       gen: 0,
     });
   };
@@ -122,8 +122,8 @@ class App extends React {
   Setgrid helper function
   */
   gridSetter = () => {
-    let curGrid = grid;
-    let newGrid = arrayClone(grid);
+    let curGrid = this.state.grid;
+    let newGrid = arrayClone(this.state.grid);
     console.log(newGrid);
 
     for (let i = 0; i < numRows; i++) {
@@ -168,14 +168,14 @@ class App extends React {
           randomize={this.randomize}
           changeSize={this.changeSize}
         />{" "}
-        {console.log(grid)}
+        {console.log(this.state.grid)}
         <Grid
           grid={this.state.grid}
           rows={this.numRows}
           cols={this.numCols}
           clickSquare={this.clickSquare}
         />{" "}
-        {console.log(grid)}
+        {console.log(this.state.grid)}
         <h2>Generations passed: {gen}</h2>
         <h2>
           RULES OF THE GAME: (I) If the cell is alive and has 2 or 3 neighbors,
