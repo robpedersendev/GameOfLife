@@ -51,7 +51,7 @@ class App extends React {
   Allow the player to stop the running of the app
   */
   stopBtn = () => {
-    setInterval(null);
+    clearInterval(this.intervalId);
   };
 
   /*
