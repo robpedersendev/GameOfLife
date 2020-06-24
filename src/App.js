@@ -151,8 +151,10 @@ class App extends React {
       }
       return newGrid;
     }
-    setGrid(newGrid);
-    setGen(gen + 1);
+    this.setState({
+      grid: newGrid,
+      gen: this.state.gen + 1,
+    });
   };
   render() {
     return (
