@@ -60,19 +60,19 @@ class App extends React {
   changeSpeed = (speed) => {
     switch (speed) {
       case "1":
-        setSpeed(1);
-        playBtn();
+        this.speed = 1;
+        this.playBtn();
         break;
       case "2":
-        setSpeed(1000);
-        playBtn();
+        this.speed = 1000;
+        this.playBtn();
         break;
       default:
-        setSpeed(10000);
-        playBtn();
+        this.speed = 10000;
+        this.playBtn();
         break;
     }
-    clear();
+    this.clear();
   };
 
   clear = () => {
