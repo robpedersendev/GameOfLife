@@ -7,7 +7,7 @@ class App extends React {
     this.numRows = 30;
     this.numCols = 50;
     this.state = {
-      generation: 0,
+      gen: 0,
       grid: Array(this.rows)
         .fill()
         .map(() => Array(this.cols).fill(false)),
@@ -79,6 +79,10 @@ class App extends React {
     let grid = Array(this.numRows)
       .fill()
       .map(() => Array(this.numCols).fill(false));
+    this.setState({
+      gri: grid,
+      gen: 0,
+    });
   };
 
   /*
