@@ -161,19 +161,19 @@ class App extends React {
       <div>
         <h1>Bob's interpretation of Conway's Game of Life</h1>
         <Buttons
-          playBtn={playBtn}
-          stopBtn={stopBtn}
-          changeSpeed={changeSpeed}
-          clear={clear}
-          randomize={randomize}
-          changeSize={changeSize}
+          playBtn={this.playBtn}
+          stopBtn={this.stopBtn}
+          changeSpeed={this.changeSpeed}
+          clear={this.clear}
+          randomize={this.randomize}
+          changeSize={this.changeSize}
         />{" "}
         {console.log(grid)}
         <Grid
-          grid={grid}
-          rows={numRows}
-          cols={numCols}
-          clickSquare={clickSquare}
+          grid={this.state.grid}
+          rows={this.numRows}
+          cols={this.numCols}
+          clickSquare={this.clickSquare}
         />{" "}
         {console.log(grid)}
         <h2>Generations passed: {gen}</h2>
