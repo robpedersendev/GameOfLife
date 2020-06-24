@@ -91,18 +91,18 @@ class App extends React {
   changeSize = (size) => {
     switch (size) {
       case "1":
-        setNumRows(30);
-        setNumCols(30);
+        this.cols = 30;
+        this.rows = 30;
         break;
       case "2":
-        setNumRows(60);
-        setNumCols(60);
+        this.cols = 60;
+        this.rows = 60;
         break;
       default:
-        setNumRows(80);
-        setNumCols(80);
+        this.cols = 80;
+        this.rows = 80;
     }
-    clear();
+    this.clear();
   };
   /*
   This will allow for randomization
