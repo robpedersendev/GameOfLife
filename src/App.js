@@ -6,14 +6,7 @@ const App = () => {
   const [numRows, setNumRows] = useState(60);
 
   const [numCols, setNumCols] = useState(60);
-  const emptyGrid = () => {
-    const rows = []; // Create rows
-    for (let i = 0; i < numRows; i++) {
-      // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
-      rows.push(Array.from(Array(numCols), () => 0)); //and create columns. Second parameter of Array.from is a mapping function that gets the value and the key and you can also return what the value is going to be
-    }
-    return rows;
-  };
+
   // useState hook that is used for the grid itself
   const [grid, setGrid] = useState(() => {
     const rows = []; // Create rows
