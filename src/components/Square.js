@@ -13,7 +13,7 @@ class Square extends Component {
       <div
         className={this.props.squareClass}
         // squareId={this.props.id}
-        onClick={this.handleClick}
+        onClick={handleClick}
       />
     );
   }
