@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "../styles/Grid.css";
 import Square from "./Square.js";
 
 class Grid extends Component {
@@ -21,7 +21,7 @@ class Grid extends Component {
           <Square
             squareClass={squareClass}
             key={id}
-            boxId={id}
+            // squareId={id}
             row={i}
             col={j}
             selectSquare={this.props.clickSquare}

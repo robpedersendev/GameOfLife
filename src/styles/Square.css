@@ -1,0 +1,20 @@
+.box:hover {
+  background: rgb(255, 0, 0);
+}
+
+.box {
+  display: flex;
+  border: 1px solid black;
+  width: 15px;
+  height: 15px;
+
+  margin: -1px;
+}
+
+.off {
+  background-color: white;
+}
+
+.on {
+  background-color: black;
+}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "../styles/Square.css";
 class Square extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +12,7 @@ class Square extends Component {
     return (
       <div
         className={this.props.squareClass}
-        id={this.props.id}
+        // squareId={this.props.id}
         onClick={this.handleClick}
       />
     );

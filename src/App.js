@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Grid from "./components/Grid.js";
 import Buttons from "./components/Buttons.js";
+
+import "./index.css";
 class App extends Component {
   constructor() {
     super();
@@ -156,7 +158,6 @@ class App extends Component {
           newGrid[i][j] = 1;
         }
       }
-      return newGrid;
     }
     this.setState({
       grid: newGrid,
