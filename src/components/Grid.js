@@ -7,7 +7,6 @@ class Grid extends Component {
     super(props);
   }
   render() {
-    const width = this.props.cols * 14 + 1;
     let rows = [];
 
     let squareClass = "";
@@ -32,7 +31,13 @@ class Grid extends Component {
 
     // boxes pushed into array (rowsArr)
     return (
-      <div className="grid" style={{ width: width }}>
+      <div
+        className="grid"
+        style={{
+          display: "grid",
+          gridTemplateColumns: `repeat(${this.props.cols}, 12px)`,
+        }}
+      >
         {rows}
       </div>
     );

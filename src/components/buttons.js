@@ -12,7 +12,9 @@ class Buttons extends React.Component {
     this.props.changeSize(evt);
   };
   handleSpeedSelect = (evt) => {
+    this.props.clear();
     this.props.changeSpeed(evt);
+    this.props.randomize();
   };
 
   render() {
@@ -36,8 +38,9 @@ class Buttons extends React.Component {
             id="size-menu"
             onSelect={this.handleSpeedSelect}
           >
-            <DropdownItem eventKey="1">Slow</DropdownItem>
-            <DropdownItem eventKey="2">Fast</DropdownItem>
+            <DropdownItem eventKey="1">Fast</DropdownItem>
+            <DropdownItem eventKey="2">Normal</DropdownItem>
+            <DropdownItem eventKey="2">Slow</DropdownItem>
           </DropdownButton>
           <DropdownButton
             title="Grids"

@@ -5,10 +5,10 @@
 .box {
   display: flex;
   border: 1px solid black;
-  width: 15px;
+
   height: 15px;
 
-  margin: -1px;
+  margin: 0 0 -0.1 -0.1;
 }
 
 .off {

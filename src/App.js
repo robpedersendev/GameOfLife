@@ -6,6 +6,7 @@ import "./index.css";
 class App extends Component {
   constructor() {
     super();
+    this.currentSpeed = "normal";
     this.speed = 1000;
     this.numRows = 30;
     this.numCols = 50;
@@ -27,6 +28,22 @@ class App extends Component {
     [-1, -1],
     [1, -1],
   ];
+
+  /*
+  This will allow for randomization
+  */
+  randomize = () => {
+    const rows = []; // Create rows
+    for (let i = 0; i < this.numRows; i++) {
+      // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
+      rows.push(
+        Array.from(Array(this.numCols), () => (Math.random() > 0.5 ? 1 : 0))
+      ); //and create columns. Second parameter of Array.from is a mapping function that gets the value and the key and you can also return what the value is going to be
+    }
+    this.setState({
+      grid: rows,
+    });
+  };
 
   /*
 
@@ -63,14 +80,22 @@ class App extends Component {
     switch (speed) {
       case "1":
         this.speed = 1;
+        this.currentSpeed = "Fast";
         this.playBtn();
         break;
       case "2":
         this.speed = 1000;
+        this.currentSpeed = "Normal";
+        this.playBtn();
+        break;
+      case "3":
+        this.speed = 10000;
+        this.currentSpeed = "Slow";
         this.playBtn();
         break;
       default:
-        this.speed = 10000;
+        this.speed = 1000;
+        this.currentSpeed = "Normal";
         this.playBtn();
         break;
     }
@@ -105,21 +130,6 @@ class App extends Component {
         this.rows = 80;
     }
     this.clear();
-  };
-  /*
-  This will allow for randomization
-  */
-  randomize = () => {
-    const rows = []; // Create rows
-    for (let i = 0; i < this.numRows; i++) {
-      // Use Array.from to create an array filled with 0's. Similar to [None] * Elements in Python
-      rows.push(
-        Array.from(Array(this.numCols), () => (Math.random() > 0.5 ? 1 : 0))
-      ); //and create columns. Second parameter of Array.from is a mapping function that gets the value and the key and you can also return what the value is going to be
-    }
-    this.setState({
-      grid: rows,
-    });
   };
 
   /*
