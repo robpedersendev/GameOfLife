@@ -15,7 +15,7 @@ class Grid extends Component {
         let id = i + "~" + j;
         // ternary used to select box on (black) or off (on) when just hovering
         squareClass = this.props.grid[i][j] ? "box on" : "box off";
-        console.log(squareClass);
+
         rows.push(
           <Square
             squareClass={squareClass}
