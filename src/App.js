@@ -89,16 +89,15 @@ class App extends Component {
         this.playBtn();
         break;
       case "3":
-        this.speed = 10000;
+        this.speed = 3000;
         this.currentSpeed = "Slow";
         this.playBtn();
         break;
       default:
-        this.speed = 1000;
-        this.currentSpeed = "Normal";
-        this.playBtn();
-        break;
+        console.log(speed);
+        console.log(this.speed);
     }
+
     this.clear();
   };
 
@@ -106,6 +105,7 @@ class App extends Component {
     let grid = Array(this.numRows)
       .fill()
       .map(() => Array(this.numCols).fill(0));
+
     this.setState({
       grid: grid,
       gen: 0,
@@ -118,16 +118,16 @@ class App extends Component {
   changeSize = (size) => {
     switch (size) {
       case "1":
-        this.cols = 30;
-        this.rows = 30;
+        this.numRows = 60;
+        this.numCols = 70;
         break;
       case "2":
-        this.cols = 60;
-        this.rows = 60;
+        this.numRows = 40;
+        this.numCols = 50;
         break;
       default:
-        this.cols = 80;
-        this.rows = 80;
+        console.log(size);
+        console.log(this.size);
     }
     this.clear();
   };
@@ -194,11 +194,12 @@ class App extends Component {
           clickSquare={this.clickSquare}
         />{" "}
         <h2>Generations passed: {this.state.gen}</h2>
-        <h2>
+        <h3>Generations passed: {this.currentSpeed}</h3>
+        <h4>
           RULES OF THE GAME: (I) If the cell is alive and has 2 or 3 neighbors,
           then it remains alive. (II) Else it dies. If the cell is dead and has
           exactly 3 neighbors, then it comes to life. Else if remains dead.
-        </h2>
+        </h4>
       </div>
     );
   }

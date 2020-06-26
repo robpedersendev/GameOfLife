@@ -9,7 +9,11 @@ import {
 
 class Buttons extends React.Component {
   handleSizeSelect = (evt) => {
+    this.props.stopBtn();
+    this.props.clear();
+    // setTimeout((evt) => {
     this.props.changeSize(evt);
+    // }, 500);
   };
   handleSpeedSelect = (evt) => {
     this.props.clear();
@@ -27,7 +31,13 @@ class Buttons extends React.Component {
           <Button color="danger" onClick={this.props.stopBtn}>
             Stop
           </Button>
-          <Button color="success" onClick={this.props.clear}>
+          <Button
+            color="success"
+            onClick={() => {
+              this.props.clear();
+              this.props.stopBtn();
+            }}
+          >
             Clear
           </Button>
           <Button color="danger" onClick={this.props.randomize}>
@@ -40,16 +50,15 @@ class Buttons extends React.Component {
           >
             <DropdownItem eventKey="1">Fast</DropdownItem>
             <DropdownItem eventKey="2">Normal</DropdownItem>
-            <DropdownItem eventKey="2">Slow</DropdownItem>
+            <DropdownItem eventKey="3">Slow</DropdownItem>
           </DropdownButton>
           <DropdownButton
             title="Grids"
             id="size-menu"
             onSelect={this.handleSizeSelect}
           >
-            <DropdownItem eventKey="1">30x20</DropdownItem>
-            <DropdownItem eventKey="2">60x40</DropdownItem>
-            <DropdownItem eventKey="3">80x60</DropdownItem>
+            <DropdownItem eventKey="1">60*70</DropdownItem>
+            <DropdownItem eventKey="2">40*50</DropdownItem>
           </DropdownButton>
         </ButtonToolbar>
       </div>
