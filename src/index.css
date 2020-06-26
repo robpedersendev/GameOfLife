@@ -4,7 +4,8 @@ body {
 
 .center {
   margin: auto;
-  display: table;
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
 }
 

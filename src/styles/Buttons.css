@@ -1,0 +1,11 @@
+.btn-primary:first {
+  color: #fff;
+  background-color: green;
+  border-color: green;
+}
+
+.btn-primary:second {
+  color: #fff;
+  background-color: green;
+  border-color: green;
+}

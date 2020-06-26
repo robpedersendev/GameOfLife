@@ -20,7 +20,7 @@ class Grid extends Component {
           <Square
             squareClass={squareClass}
             key={id}
-            // squareId={id}
+            squareId={id}
             row={i}
             col={j}
             selectSquare={this.props.clickSquare}
