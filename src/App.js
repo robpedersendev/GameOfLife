@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Grid from "./components/Grid.js";
-import Buttons from "./components/Buttons.js";
+import Buttons from "./components/Buttons";
 
 import "./index.css";
 class App extends Component {
