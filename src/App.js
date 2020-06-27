@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Grid from "./components/Grid.js";
-import Buttons from "./components/Buttons.js";
+// import Buttons from "./"
 
 import "./index.css";
 class App extends Component {
@@ -178,7 +178,7 @@ class App extends Component {
     return (
       <div>
         <h1>Bob's interpretation of Conway's Game of Life</h1>
-        <Buttons
+        {/* <Buttons
           playBtn={this.playBtn}
           stopBtn={this.stopBtn}
           changeSpeed={this.changeSpeed}
@@ -186,7 +186,7 @@ class App extends Component {
           randomize={this.randomize}
           changeSize={this.changeSize}
         />{" "}
-        {console.log(this.state.grid)}
+        {console.log(this.state.grid)} */}
         <Grid
           grid={this.state.grid}
           rows={this.numRows}
