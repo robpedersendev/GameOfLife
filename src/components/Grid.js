@@ -3,9 +3,6 @@ import "../styles/Grid.css";
 import Square from "./Square.js";
 
 class Grid extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     let rows = [];
 
