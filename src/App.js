@@ -52,7 +52,7 @@ class App extends Component {
   */
 
   clickSquare = (row, col) => {
-    let copy = arrayClone(this.state.grid);
+    let copy = curCopy(this.state.grid);
     copy[row][col] = !copy[row][col];
     this.setState({
       grid: copy,
@@ -136,8 +136,9 @@ class App extends Component {
   Setgrid helper function
   */
   gridSetter = () => {
+    // Point out the switch
     let curGrid = this.state.grid;
-    let newGrid = arrayClone(this.state.grid);
+    let newGrid = curCopy(this.state.grid);
     console.log(newGrid);
 
     for (let i = 0; i < this.numRows; i++) {
@@ -205,7 +206,7 @@ class App extends Component {
   }
 }
 // stringify makes a clone of the arrays inside the arrays allows for new cloned boxes to be made
-function arrayClone(arr) {
+function curCopy(arr) {
   return JSON.parse(JSON.stringify(arr));
 }
 
